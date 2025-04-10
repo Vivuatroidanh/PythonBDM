@@ -1,182 +1,1058 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stroke Prediction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /*just bg and body style*/
-        body {
-            margin: 40px;
-            background-color: #808080;
-            background-image: linear-gradient(315deg, #B993D6 19%, #8CA6DB 85%);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #7FDBDB; /* Turquoise background color */
+            color: #333;
+            line-height: 1.6;
+        }
+        
         .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header styles */
+        header {
+            padding: 20px 0;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            width: 50px;
+            height: 50px;
+            background-color: #FFEB3B; /* Yellow */
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+            position: relative;
+        }
+        
+        .logo .heart {
+            color: #E53935; /* Red heart */
+            font-size: 24px;
+        }
+        
+        .logo .plus {
+            position: absolute;
+            top: 5px;
+            right: 0;
+            background: white;
+            color: #4CAF50; /* Green plus */
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .logo-text {
+            font-size: 22px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li a {
+            padding: 10px 20px;
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links li a:hover {
+            color: #E53935;
+        }
+        
+        /* Hero section styles */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 0;
+        }
+        
+        .hero-text {
+            flex: 1;
+            padding-right: 40px;
+        }
+        
+        .hero-text h1 {
+            font-size: 48px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #212121;
+        }
+        
+        .hero-text p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        .hero-img {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero-img img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #E53935;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #C62828;
+        }
+        
+        /* Form section styles */
+        .predict-section {
+            display: none;
+            padding: 40px 0;
+        }
+        
+        .form-container {
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .form-header h2 {
+            font-size: 28px;
+            color: #333;
+        }
+        
+        .form-illustration {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 400px;
+            height: auto;
+        }
+        
+        .prediction-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-left: 380px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+        }
+        
+        .radio-option input {
+            margin-right: 8px;
+        }
+        
+        .form-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+        
+        .btn-reset {
+            background-color: #90CAF9;
+        }
+        
+        .btn-reset:hover {
+            background-color: #64B5F6;
+        }
+        
+        .btn-predict {
+            background-color: #4CAF50;
+        }
+        
+        .btn-predict:hover {
+            background-color: #388E3C;
+        }
+        
+        /* BMI Calculator Styles */
+        .bmi-section {
+            display: none;
+            padding: 40px 0;
+        }
+        
+        .bmi-container {
+            background-color: #BFF6F8;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .bmi-header {
+            background-color: #A83232;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px 5px 0 0;
+            margin: -40px -40px 30px -40px;
+        }
+        
+        .bmi-header h2 {
+            margin: 0;
+            font-size: 28px;
+        }
+        
+        .bmi-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .bmi-doctors {
+            flex: 1;
+            padding-right: 40px;
+        }
+        
+        .bmi-doctors img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .bmi-calculator {
+            flex: 1;
+            padding: 20px;
+        }
+        
+        .bmi-result {
+            background-color: #333;
+            color: white;
             border-radius: 5px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .bmi-value {
+            font-size: 48px;
+            font-weight: bold;
+            color: #ADFF2F;
+            margin-bottom: 10px;
+        }
+        
+        .bmi-category {
+            font-size: 20px;
+        }
+        
+        .bmi-slider {
+            margin-bottom: 30px;
+        }
+        
+        .bmi-slider-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .bmi-slider-title {
+            font-weight: 500;
+        }
+        
+        .bmi-slider-value {
+            font-weight: bold;
+        }
+        
+        .range-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 10px;
+            border-radius: 5px;
+            background: #ddd;
+            outline: none;
+        }
+        
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #A83232;
+            cursor: pointer;
+        }
+        
+        .range-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #A83232;
+            cursor: pointer;
+        }
+        
+        /* Glucose Calculator Styles */
+        .glucose-section {
+            display: none;
+            padding: 40px 0;
+        }
+        
+        .glucose-container {
+            background-color: #BFF6F8;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .glucose-header {
+            background-color: #2196F3;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px 5px 0 0;
+            margin: -40px -40px 30px -40px;
+        }
+        
+        .glucose-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .glucose-calculator {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .glucose-input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .glucose-input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        
+        .glucose-unit {
+            font-weight: bold;
+            width: 80px;
+        }
+        
+        .glucose-result {
+            background-color: #333;
+            color: white;
+            border-radius: 5px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .glucose-value {
+            font-size: 36px;
+            font-weight: bold;
+            color: #ADFF2F;
+            margin-bottom: 10px;
+        }
+        
+        /* Result section styles */
+        .results-section {
+            display: none;
+            padding: 40px 0;
+        }
+        
+        .results-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
-
-        .btn-container {
-            background: #cdb4db;
-            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+        
+        .results-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        
+        .results-icon.high-risk {
+            color: #E53935;
+        }
+        
+        .results-icon.low-risk {
+            color: #4CAF50;
+        }
+        
+        .results-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        
+        .results-description {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        .results-probability {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        
+        .risk-factors {
+            background-color: #f5f5f5;
             border-radius: 5px;
-            padding: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .risk-factors h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .risk-factors ul {
+            padding-left: 20px;
+        }
+        
+        .risk-factors li {
+            margin-bottom: 10px;
+        }
+        
+        /* Footer styles */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 50%;
+            margin: 0 10px;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: #E53935;
+            color: white;
+        }
+        
+        .copyright {
+            font-size: 14px;
+            color: #333;
         }
 
-        .head {
-            font-weight: bolder;
+        /* Make sections visible based on active page */
+        .active-section {
+            display: block;
         }
-
-        .btn-primary {
-            color: #ffffff;
-            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-            background-color: #073b4c !important;
-            border-color: #023047 !important;
-            padding: 10px;
-            margin-top: 15px;
+        
+        /* Active nav link */
+        .nav-active {
+            color: #E53935 !important;
+            border-bottom: 2px solid #E53935;
         }
-
-        label {
-            width: 50%;
-        }
-
-        #predict {
-            display: none;
-        }
-
-        .form-group {
-            padding: 2px;
-        }
-
-        .form-select {
-            padding: 5px;
-            border-radius: 5px;
-            border: 0px;
-            width: 200px;
-        }
-
-         .prediction {
-            background: #073b4c;
-            color: aliceblue;
-        }
-
     </style>
-    <!--Font Awesome-->
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </head>
-
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="head">Stroke Prediction</h1>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo-container">
+                    <div class="logo">
+                        <i class="fas fa-heart heart"></i>
+                        <div class="plus">+</div>
+                    </div>
+                    <span class="logo-text">Stroke prediction</span>
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-link nav-active" data-section="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-section="predict">Predict</a></li>
+                    <li><a href="#" class="nav-link" data-section="counsel">Counsel</a></li>
+                    <li><a href="#" class="nav-link" data-section="contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Section -->
+    <section class="hero-section active-section" id="home">
+        <div class="container">
+            <div class="hero">
+                <div class="hero-text">
+                    <h1>Know if you are prone to Stroke or not.</h1>
+                    <p>Is your life stressful? Do you feel anxious for no reason? Take this quiz, figure out what is going on and take control of your life ❤️</p>
+                    <a href="#" class="btn" id="get-started">Get started</a>
+                </div>
+                <div class="hero-img">
+                    <img src="https://img.freepik.com/free-vector/doctors-examining-giant-heart-medical-check-up-treatment_335657-2780.jpg?w=740" alt="Heart Health Checkup">
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="btn-container">
+    </section>
 
-                    <!-- Main Input For Receiving Query to our ML -->
-                    <form action="{{ url_for('predict')}}" method="post" class="form-inline">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <img class="image" src="{{ url_for('static', filename='image3.jpg')}}" width="100%" height="100%" />
+    <!-- Predict Section (Stroke Prediction Form) -->
+    <section class="predict-section" id="predict">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>STROKE PREDICTION FORM</h2>
+                </div>
+                
+                <img src="https://img.freepik.com/free-vector/doctor-character-background_1270-84.jpg?w=740" alt="Doctor" class="form-illustration">
+                
+                <form class="prediction-form" id="stroke-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" class="form-control" placeholder="Age" required min="0" max="120">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="marital-status">Marital Status</label>
+                        <select id="marital-status" class="form-control" required>
+                            <option value="">Select</option>
+                            <option value="Yes">Married</option>
+                            <option value="No">Never Married</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="work-type">Work type</label>
+                        <select id="work-type" class="form-control" required>
+                            <option value="">Select</option>
+                            <option value="Private">Private</option>
+                            <option value="Self-employed">Self-employed</option>
+                            <option value="Govt_job">Government Job</option>
+                            <option value="children">Children</option>
+                            <option value="Never_worked">Never worked</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" style="grid-column: span 2;">
+                        <label for="residence-type">Residence type</label>
+                        <select id="residence-type" class="form-control" required>
+                            <option value="">Select</option>
+                            <option value="Urban">Urban</option>
+                            <option value="Rural">Rural</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" style="grid-column: span 2;">
+                        <label>Gender:</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="gender-female" name="gender" value="Female" required>
+                                <label for="gender-female">Female</label>
                             </div>
-                            <div class="col-md-6">
-                                <div class="container">
-                                    <h4>Enter Details</h4>
-                                    <div class="form-group">
-                                        <label for="gender">Gender </label>
-                                        <select class="form-select" id="gender" name="gender" aria-label="Default select example" >
-                                             <option value="1">Male</option>
-                                             <option value="0">Female</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="age">Age</label>
-                                        <input type="number" class="form-control" name="age" required="required" placeholder="Age" min=1 max=100/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="hypertension">Hypertension</label>
-                                        <select class="form-select" id="hypertension" name="hypertension" aria-label="Default select example">
-                                            
-                                            <option value="1" selected>Yes</option>
-                                            <option value="0">No</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="heart_disease">Heart Disease</label>
-                                        <select class="form-select" id="disease" name="disease" aria-label="Default select example">
-                                            
-                                            <option value="1" selected>Yes</option>
-                                            <option value="0">No</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ever_married">Ever Married</label>
-                                        <select class="form-select" id="married" name="married" aria-label="Default select example">
-                                            
-                                            <option value="1" selected>Yes</option>
-                                            <option value="0">No</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="work_type">Work Type</label>
-                                        <select class="form-select" id="work" name="work" aria-label="Default select example">
-                                            
-                                            <option value="3" selected>Self-employed</option>
-                                            <option value="2">Private</option>
-                                            <option value="4">children</option>
-                                            <option value="0">Government Job</option>
-                                            <option value="1">Never_worked</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="residence_type">Residence Type</label>
-                                        <select class="form-select" id="residence" name="residence" aria-label="Default select example">
-                                            
-                                            <option value="1" selected>Urban</option>
-                                            <option value="0">Rural</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="avg_glucose_level">Average Glucose Level</label>
-                                        <input type="text" class="form-control" name="avg_glucose_level" required="required" placeholder="Average Glucose Level" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="bmi">BMI</label>
-                                        <input type="text" class="form-control" name="bmi" required="required" placeholder="Body Mass Index (BMI)">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="smoking">Smoking Status</label>
-                                        <select class="form-select" id="smoking" name="smoking" aria-label="Default select example">
-                                             <option value="0">Unknown</option>
-                                            <option value="2" selected>Never smoked</option>
-                                            <option value="1">Formerly smoked</option>
-                                            <option value="3">Smokes</option>
-                                        </select>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary btn-lg">Predict</button>
-                                </div>
+                            <div class="radio-option">
+                                <input type="radio" id="gender-male" name="gender" value="Male">
+                                <label for="gender-male">Male</label>
                             </div>
                         </div>
-                    </form>
-                    <br />
-                    <center>
-                        <h1 class="prediction">{{prediction_text}}</h1>
-                    </center>
-                    <br />
-</body>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bmi">BMI</label>
+                        <input type="number" id="bmi" class="form-control" placeholder="BMI" required min="10" max="50" step="0.1">
+                        <div style="text-align: right; margin-top: 5px;">
+                            <a href="#" id="calculate-bmi-link" style="font-size: 14px; color: #4CAF50;">Calculate BMI</a>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="glucose-level">Glucose level</label>
+                        <input type="number" id="glucose-level" class="form-control" placeholder="mg/dL" required min="50" max="300" step="0.1">
+                        <div style="text-align: right; margin-top: 5px;">
+                            <a href="#" id="calculate-glucose-link" style="font-size: 14px; color: #4CAF50;">Convert from mmol/L</a>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="smoking-status">Do you smoke?</label>
+                        <select id="smoking-status" class="form-control" required>
+                            <option value="">Select</option>
+                            <option value="never smoked">Never smoked</option>
+                            <option value="formerly smoked">Formerly smoked</option>
+                            <option value="smokes">Currently smokes</option>
+                            <option value="Unknown">Unknown</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="hypertension">Have you been diagnosed with hypertension?</label>
+                        <select id="hypertension" class="form-control" required>
+                            <option value="">Select</option>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" style="grid-column: span 2;">
+                        <label for="heart-disease">Do you have any other heart diseases?</label>
+                        <select id="heart-disease" class="form-control" required>
+                            <option value="">Select</option>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-buttons" style="grid-column: span 2;">
+                        <button type="reset" class="btn btn-reset">Reset</button>
+                        <button type="submit" class="btn btn-predict">Predict</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
 
+    <!-- BMI Calculator Section -->
+    <section class="bmi-section" id="bmi-calculator">
+        <div class="container">
+            <div class="bmi-container">
+                <div class="bmi-header">
+                    <h2>BMI Calculator</h2>
+                </div>
+                
+                <div class="bmi-content">
+                    <div class="bmi-doctors">
+                        <img src="https://img.freepik.com/free-vector/doctor-character-background_1270-83.jpg?w=740" alt="Doctors">
+                    </div>
+                    
+                    <div class="bmi-calculator">
+                        <div class="bmi-result">
+                            <div class="bmi-value" id="bmi-value">20.0</div>
+                            <div class="bmi-category" id="bmi-category">Normal weight</div>
+                        </div>
+                        
+                        <div class="bmi-slider">
+                            <div class="bmi-slider-header">
+                                <span class="bmi-slider-title">Weight</span>
+                                <span class="bmi-slider-value" id="weight-value">20 kg</span>
+                            </div>
+                            <input type="range" min="10" max="150" value="20" class="range-slider" id="weight-slider">
+                        </div>
+                        
+                        <div class="bmi-slider">
+                            <div class="bmi-slider-header">
+                                <span class="bmi-slider-title">Height</span>
+                                <span class="bmi-slider-value" id="height-value">100 cm</span>
+                            </div>
+                            <input type="range" min="50" max="220" value="100" class="range-slider" id="height-slider">
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 20px;">
+                            <button id="use-bmi-value" class="btn">Use This BMI Value</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Glucose Calculator Section -->
+    <section class="glucose-section" id="glucose-calculator">
+        <div class="container">
+            <div class="glucose-container">
+                <div class="glucose-header">
+                    <h2>Blood Glucose Converter</h2>
+                </div>
+                
+                <div class="glucose-content">
+                    <div class="glucose-calculator">
+                        <div class="form-group">
+                            <label for="mmol-value">Enter your blood glucose level in mmol/L:</label>
+                            <div class="glucose-input-group">
+                                <input type="number" id="mmol-value" class="glucose-input" placeholder="Enter value" min="0" max="30" step="0.1">
+                                <span class="glucose-unit">mmol/L</span>
+                            </div>
+                        </div>
+                        
+                        <div class="glucose-result">
+                            <div id="mgdl-value" class="glucose-value">0</div>
+                            <div>mg/dL</div>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 20px;">
+                            <button id="convert-glucose" class="btn">Convert</button>
+                            <button id="use-glucose-value" class="btn" style="margin-left: 10px;">Use This Value</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section" id="results">
+        <div class="container">
+            <div class="results-container">
+                <div class="results-icon high-risk" id="result-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                
+                <h2 class="results-title" id="result-title">High Risk of Stroke</h2>
+                
+                <p class="results-description" id="result-description">
+                    Based on your information, our model predicts that you may have a higher risk of stroke.
+                </p>
+                
+                <div class="results-probability" id="result-probability">Probability: 75%</div>
+                
+                <div class="risk-factors">
+                    <h3>Key Risk Factors:</h3>
+                    <ul id="risk-factors-list">
+                        <li>Age (65+): Stroke risk increases with age</li>
+                        <li>High Blood Pressure: Major risk factor for stroke</li>
+                        <li>High Blood Glucose: Indicates possible diabetes</li>
+                    </ul>
+                </div>
+                
+                <a href="#" class="btn" id="back-to-form">Back to Form</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple Counsel Section -->
+    <section class="counsel-section" id="counsel" style="display: none;">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Health Recommendations</h2>
+                </div>
+                
+                <div style="padding: 20px;">
+                    <h3>Preventing Stroke - Healthy Lifestyle Tips</h3>
+                    <ul style="margin: 20px 0; padding-left: 20px;">
+                        <li>Maintain a healthy diet rich in fruits, vegetables, and whole grains</li>
+                        <li>Exercise regularly - aim for at least 150 minutes of moderate activity per week</li>
+                        <li>Control high blood pressure through medication and lifestyle changes</li>
+                        <li>Quit smoking and limit alcohol consumption</li>
+                        <li>Maintain a healthy weight and manage diabetes</li>
+                        <li>Monitor and control cholesterol levels</li>
+                        <li>Manage stress through relaxation techniques and quality sleep</li>
+                        <li>Get regular health checkups to catch potential issues early</li>
+                    </ul>
+                    <p>Remember, these are general recommendations. Please consult with a healthcare professional for personalized advice.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple Contact Section -->
+    <section class="contact-section" id="contact" style="display: none;">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Contact Us</h2>
+                </div>
+                
+                <div style="padding: 20px; text-align: center;">
+                    <p>If you have any questions or need assistance, please feel free to reach out to us:</p>
+                    <p style="margin: 20px 0;"><i class="fas fa-envelope"></i> Email: contact@strokeprediction.com</p>
+                    <p><i class="fas fa-phone"></i> Phone: +1 (555) 123-4567</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+            
+            <div class="copyright">
+                © Copyright Stroke Prediction
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation 
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = {
+            'home': document.getElementById('home'),
+            'predict': document.getElementById('predict'),
+            'counsel': document.getElementById('counsel'),
+            'contact': document.getElementById('contact'),
+            'bmi-calculator': document.getElementById('bmi-calculator'),
+            'glucose-calculator': document.getElementById('glucose-calculator'),
+            'results': document.getElementById('results')
+        };
+
+        // Function to show a specific section
+        function showSection(sectionId) {
+            // Hide all sections
+            Object.values(sections).forEach(section => {
+                if (section) section.style.display = 'none';
+            });
+            
+            // Show the selected section
+            if (sections[sectionId]) {
+                sections[sectionId].style.display = 'block';
+            }
+            
+            // Update active nav link
+            navLinks.forEach(link => {
+                link.classList.remove('nav-active');
+                if (link.dataset.section === sectionId) {
+                    link.classList.add('nav-active');
+                }
+            });
+        }
+
+        // Set up event listeners for navigation
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const sectionId = link.dataset.section;
+                showSection(sectionId);
+            });
+        });
+
+        // Handle "Get Started" button click
+        document.getElementById('get-started').addEventListener('click', (e) => {
+            e.preventDefault();
+            showSection('predict');
+            
+            // Update nav links
+            navLinks.forEach(link => {
+                link.classList.remove('nav-active');
+                if (link.dataset.section === 'predict') {
+                    link.classList.add('nav-active');
+                }
+            });
+        });
+
+        // BMI Calculator logic
+        const weightSlider = document.getElementById('weight-slider');
+        const weightValue = document.getElementById('weight-value');
+        const heightSlider = document.getElementById('height-slider');
+        const heightValue = document.getElementById('height-value');
+        const bmiValue = document.getElementById('bmi-value');
+        const bmiCategory = document.getElementById('bmi-category');
+
+        function calculateBMI() {
+            const weight = parseInt(weightSlider.value);
+            const height = parseInt(heightSlider.value) / 100; // Convert cm to meters
+            
+            const bmi = weight / (height * height);
+            bmiValue.textContent = bmi.toFixed(1);
+            
+            // Update BMI category
+            if (bmi < 18.5) {
+                bmiCategory.textContent = 'Underweight';
+            } else if (bmi < 25) {
+                bmiCategory.textContent = 'Normal weight';
+            } else if (bmi < 30) {
+                bmiCategory.textContent = 'Overweight';
+            } else {
+                bmiCategory.textContent = 'Obese';
+            }
+        }
+
+        weightSlider.addEventListener('input', () => {
+            weightValue.textContent = `${weightSlider.value} kg`;
+            calculateBMI();
+        });
+
+        heightSlider.addEventListener('input', () => {
+            heightValue.textContent = `${heightSlider.value} cm`;
+            calculateBMI();
+        });
+
+        // Calculate initial BMI
+        calculateBMI();
+
+        // Link to BMI calculator
+        document.getElementById('calculate-bmi-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            showSection('bmi-calculator');
+        });
+
+        // Use BMI value in form
+        document.getElementById('use-bmi-value').addEventListener('click', () => {
+            document.getElementById('bmi').value = bmiValue.textContent;
+            showSection('predict');
+        });
+
+        // Glucose converter logic
+        document.getElementById('calculate-glucose-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            showSection('glucose-calculator');
+        });
+
+        function convertGlucose() {
+            const mmolValue = parseFloat(document.getElementById('mmol-value').value);
+            if (!isNaN(mmolValue)) {
+                const mgdlValue = mmolValue * 18;
+                document.getElementById('mgdl-value').textContent = mgdlValue.toFixed(1);
+            }
+        }
+
+        document.getElementById('convert-glucose').addEventListener('click', convertGlucose);
+        
+        document.getElementById('mmol-value').addEventListener('input', convertGlucose);
+
+        document.getElementById('use-glucose-value').addEventListener('click', () => {
+            const mgdlValue = document.getElementById('mgdl-value').textContent;
+            document.getElementById('glucose-level').value = mgdlValue;
+            showSection('predict');
+        });
+
+        // Form submission
+        document.getElementById('stroke-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // In a real application, you would send this data to your backend
+            // for processing with your machine learning model
+            
+            // For now, we'll just simulate a prediction
+            const age = parseInt(document.getElementById('age').value);
+            const bmi = parseFloat(document.getElementById('bmi').value);
+            const glucose = parseFloat(document.getElementById('glucose-level').value);
+            const hypertension = document.getElementById('hypertension').value === "1";
+            const heartDisease = document.getElementById('heart-disease').value === "1";
+            
+            // Simple risk logic (just for demonstration)
+            let risk = 0;
+            
+            if (age > 65) risk += 25;
+            if (bmi > 30) risk += 15;
+            if (glucose > 180) risk += 20;
+            if (hypertension) risk += 20;
+            if (heartDisease) risk += 20;
+            
+            const highRisk = risk > 50;
+            
+            // Update results section
+            document.getElementById('result-icon').className = highRisk ? 'results-icon high-risk' : 'results-icon low-risk';
+            document.getElementById('result-icon').innerHTML = highRisk ? 
+                '<i class="fas fa-exclamation-triangle"></i>' : 
+                '<i class="fas fa-check-circle"></i>';
+                
+            document.getElementById('result-title').textContent = highRisk ? 
+                'High Risk of Stroke' : 
+                'Low Risk of Stroke';
+                
+            document.getElementById('result-description').textContent = highRisk ?
+                'Based on your information, our model predicts that you may have a higher risk of stroke.' :
+                'Based on your information, our model predicts that you have a lower risk of stroke.';
+                
+            document.getElementById('result-probability').textContent = `Probability: ${risk}%`;
+            
+            // Show results
+            showSection('results');
+        });
+
+        // Back to form button
+        document.getElementById('back-to-form').addEventListener('click', (e) => {
+            e.preventDefault();
+            showSection('predict');
+        });
+
+        // Initialize the page
+        showSection('home');
+    </script>
+</body>
 </html>

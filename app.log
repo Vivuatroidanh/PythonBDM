@@ -1,0 +1,143 @@
+2025-04-09 20:02:08,083 - __main__ - INFO - Model loaded successfully
+2025-04-09 20:02:08,084 - __main__ - INFO - Model info loaded: KNN
+2025-04-09 20:02:08,096 - __main__ - INFO - SHAP KernelExplainer initialized
+2025-04-09 20:02:08,100 - __main__ - INFO - Starting Flask app
+2025-04-09 20:02:08,196 - werkzeug - WARNING -  * Debugger is active!
+2025-04-09 20:02:08,234 - werkzeug - INFO -  * Debugger PIN: 614-262-245
+2025-04-09 20:02:08,335 - __main__ - INFO - Processing prediction request
+2025-04-09 20:02:08,368 - __main__ - INFO - Processed input: {'age': 77.0, 'hypertension': 0, 'heart_disease': 0, 'avg_glucose_level': 230.7, 'bmi': 30.4, 'gender_Male': 1, 'ever_married_Yes': 1, 'work_type_Never_worked': 0, 'work_type_Private': 0, 'work_type_Self-employed': 1, 'work_type_children': 0, 'Residence_type_Urban': 0, 'smoking_status_formerly smoked': 0, 'smoking_status_never smoked': 1, 'smoking_status_smokes': 0}
+2025-04-09 20:02:08,371 - __main__ - INFO - Prediction: 1, Probability: 0.8571
+2025-04-09 20:02:08,371 - __main__ - INFO - Generating SHAP visualizations
+2025-04-09 20:02:08,396 - shap - INFO - num_full_subsets = 3
+2025-04-09 20:02:08,414 - shap - INFO - np.sum(w_aug) = 7.0
+2025-04-09 20:02:08,414 - shap - INFO - np.sum(self.kernelWeights) = 0.9999999999999999
+2025-04-09 20:02:08,431 - shap - INFO - phi = array([-0.17168298, -0.61714467, -0.0454841 , -0.01462591, -0.00272217,
+        0.00442291, -0.00986636])
+2025-04-09 20:02:08,432 - shap - INFO - np.sum(w_aug) = 7.0
+2025-04-09 20:02:08,432 - shap - INFO - np.sum(self.kernelWeights) = 0.9999999999999999
+2025-04-09 20:02:08,435 - shap - INFO - phi = array([ 0.17168298,  0.61714467,  0.0454841 ,  0.01462591,  0.00272217,
+       -0.00442291,  0.00986636])
+2025-04-09 20:02:08,438 - __main__ - ERROR - Error creating SHAP plots: In v0.20, force plot now requires the base value as the first parameter! Try shap.plots.force(explainer.expected_value, shap_values) or for multi-output models try shap.plots.force(explainer.expected_value[0], shap_values[..., 0]).
+2025-04-09 20:02:08,450 - shap - INFO - num_full_subsets = 3
+2025-04-09 20:02:08,465 - shap - INFO - np.sum(w_aug) = 7.0
+2025-04-09 20:02:08,465 - shap - INFO - np.sum(self.kernelWeights) = 0.9999999999999999
+2025-04-09 20:02:08,467 - shap - INFO - phi = array([-0.17168298, -0.61714467, -0.0454841 , -0.01462591, -0.00272217,
+        0.00442291, -0.00986636])
+2025-04-09 20:02:08,468 - shap - INFO - np.sum(w_aug) = 7.0
+2025-04-09 20:02:08,468 - shap - INFO - np.sum(self.kernelWeights) = 0.9999999999999999
+2025-04-09 20:02:08,476 - shap - INFO - phi = array([ 0.17168298,  0.61714467,  0.0454841 ,  0.01462591,  0.00272217,
+       -0.00442291,  0.00986636])
+2025-04-09 20:02:08,477 - __main__ - ERROR - Error identifying risk factors: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2025-04-09 20:02:08,546 - werkzeug - INFO - 127.0.0.1 - - [09/Apr/2025 20:02:08] "POST /predict HTTP/1.1" 200 -
+2025-04-09 20:02:48,955 - __main__ - INFO - Processing prediction request
+2025-04-09 20:02:48,974 - __main__ - INFO - Processed input: {'age': 77.0, 'hypertension': 1, 'heart_disease': 1, 'avg_glucose_level': 230.7, 'bmi': 34.8, 'gender_Male': 1, 'ever_married_Yes': 1, 'work_type_Never_worked': 0, 'work_type_Private': 0, 'work_type_Self-employed': 1, 'work_type_children': 0, 'Residence_type_Urban': 0, 'smoking_status_formerly smoked': 0, 'smoking_status_never smoked': 1, 'smoking_status_smokes': 0}
+2025-04-09 20:02:48,987 - __main__ - INFO - Prediction: 1, Probability: 0.8571
+2025-04-09 20:02:48,987 - __main__ - INFO - Generating SHAP visualizations
+2025-04-09 20:02:49,053 - shap - INFO - num_full_subsets = 4
+2025-04-09 20:02:49,102 - shap - INFO - np.sum(w_aug) = 9.0
+2025-04-09 20:02:49,102 - shap - INFO - np.sum(self.kernelWeights) = 1.0
+2025-04-09 20:02:49,110 - shap - INFO - phi = array([-1.52372280e-01,  3.40829611e-03, -9.08418738e-03, -6.66095886e-01,
+       -1.10323287e-02, -1.13246222e-02, -4.98148562e-04,  5.70483900e-03,
+       -1.57948887e-02])
+2025-04-09 20:02:49,111 - shap - INFO - np.sum(w_aug) = 9.0
+2025-04-09 20:02:49,111 - shap - INFO - np.sum(self.kernelWeights) = 1.0
+2025-04-09 20:02:49,119 - shap - INFO - phi = array([ 1.52372280e-01, -3.40829611e-03,  9.08418738e-03,  6.66095886e-01,
+        1.10323287e-02,  1.13246222e-02,  4.98148562e-04, -5.70483900e-03,
+        1.57948887e-02])
+2025-04-09 20:02:49,132 - __main__ - ERROR - Error creating SHAP plots: In v0.20, force plot now requires the base value as the first parameter! Try shap.plots.force(explainer.expected_value, shap_values) or for multi-output models try shap.plots.force(explainer.expected_value[0], shap_values[..., 0]).
+2025-04-09 20:02:49,154 - shap - INFO - num_full_subsets = 4
+2025-04-09 20:02:49,218 - shap - INFO - np.sum(w_aug) = 9.0
+2025-04-09 20:02:49,218 - shap - INFO - np.sum(self.kernelWeights) = 1.0
+2025-04-09 20:02:49,221 - shap - INFO - phi = array([-1.52372280e-01,  3.40829611e-03, -9.08418738e-03, -6.66095886e-01,
+       -1.10323287e-02, -1.13246222e-02, -4.98148562e-04,  5.70483900e-03,
+       -1.57948887e-02])
+2025-04-09 20:02:49,222 - shap - INFO - np.sum(w_aug) = 9.0
+2025-04-09 20:02:49,222 - shap - INFO - np.sum(self.kernelWeights) = 1.0
+2025-04-09 20:02:49,232 - shap - INFO - phi = array([ 1.52372280e-01, -3.40829611e-03,  9.08418738e-03,  6.66095886e-01,
+        1.10323287e-02,  1.13246222e-02,  4.98148562e-04, -5.70483900e-03,
+        1.57948887e-02])
+2025-04-09 20:02:49,234 - __main__ - ERROR - Error identifying risk factors: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2025-04-09 20:02:49,234 - werkzeug - INFO - 127.0.0.1 - - [09/Apr/2025 20:02:49] "POST /predict HTTP/1.1" 200 -
+2025-04-09 20:03:20,048 - __main__ - INFO - Processing prediction request
+2025-04-09 20:03:20,065 - __main__ - INFO - Processed input: {'age': 77.0, 'hypertension': 1, 'heart_disease': 1, 'avg_glucose_level': 230.7, 'bmi': 30.4, 'gender_Male': 1, 'ever_married_Yes': 1, 'work_type_Never_worked': 0, 'work_type_Private': 0, 'work_type_Self-employed': 1, 'work_type_children': 0, 'Residence_type_Urban': 1, 'smoking_status_formerly smoked': 0, 'smoking_status_never smoked': 1, 'smoking_status_smokes': 0}
+2025-04-09 20:03:20,088 - __main__ - INFO - Prediction: 1, Probability: 0.8571
+2025-04-09 20:03:20,088 - __main__ - INFO - Generating SHAP visualizations
+2025-04-09 20:03:20,163 - shap - INFO - num_full_subsets = 5
+2025-04-09 20:03:20,258 - shap - INFO - np.sum(w_aug) = 9.999999999999998
+2025-04-09 20:03:20,258 - shap - INFO - np.sum(self.kernelWeights) = 0.9999999999999999
+2025-04-09 20:03:20,264 - shap - INFO - phi = array([-0.16641989,  0.00149829, -0.00786839, -0.61222289, -0.04056214,
+       -0.01136993, -0.00414756,  0.00145548, -0.01004145, -0.00742446])
+2025-04-09 20:03:20,266 - shap - INFO - np.sum(w_aug) = 9.999999999999998
+2025-04-09 20:03:20,266 - shap - INFO - np.sum(self.kernelWeights) = 0.9999999999999999
+2025-04-09 20:03:20,278 - shap - INFO - phi = array([ 0.16641989, -0.00149829,  0.00786839,  0.61222289,  0.04056214,
+        0.01136993,  0.00414756, -0.00145548,  0.01004145,  0.00742446])
+2025-04-09 20:03:20,281 - __main__ - ERROR - Error creating SHAP plots: In v0.20, force plot now requires the base value as the first parameter! Try shap.plots.force(explainer.expected_value, shap_values) or for multi-output models try shap.plots.force(explainer.expected_value[0], shap_values[..., 0]).
+2025-04-09 20:03:20,319 - shap - INFO - num_full_subsets = 5
+2025-04-09 20:03:20,387 - shap - INFO - np.sum(w_aug) = 9.999999999999998
+2025-04-09 20:03:20,387 - shap - INFO - np.sum(self.kernelWeights) = 0.9999999999999999
+2025-04-09 20:03:20,391 - shap - INFO - phi = array([-0.16641989,  0.00149829, -0.00786839, -0.61222289, -0.04056214,
+       -0.01136993, -0.00414756,  0.00145548, -0.01004145, -0.00742446])
+2025-04-09 20:03:20,393 - shap - INFO - np.sum(w_aug) = 9.999999999999998
+2025-04-09 20:03:20,393 - shap - INFO - np.sum(self.kernelWeights) = 0.9999999999999999
+2025-04-09 20:03:20,400 - shap - INFO - phi = array([ 0.16641989, -0.00149829,  0.00786839,  0.61222289,  0.04056214,
+        0.01136993,  0.00414756, -0.00145548,  0.01004145,  0.00742446])
+2025-04-09 20:03:20,401 - __main__ - ERROR - Error identifying risk factors: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2025-04-09 20:03:20,402 - werkzeug - INFO - 127.0.0.1 - - [09/Apr/2025 20:03:20] "POST /predict HTTP/1.1" 200 -
+2025-04-09 20:07:39,648 - __main__ - INFO - Processing prediction request
+2025-04-09 20:07:39,697 - __main__ - INFO - Processed input: {'age': 60.0, 'hypertension': 1, 'heart_disease': 1, 'avg_glucose_level': 111.6, 'bmi': 21.88, 'gender_Male': 0, 'ever_married_Yes': 1, 'work_type_Never_worked': 1, 'work_type_Private': 0, 'work_type_Self-employed': 0, 'work_type_children': 0, 'Residence_type_Urban': 1, 'smoking_status_formerly smoked': 0, 'smoking_status_never smoked': 1, 'smoking_status_smokes': 0}
+2025-04-09 20:07:39,892 - __main__ - INFO - Prediction: 1, Probability: 0.8569
+2025-04-09 20:07:39,893 - __main__ - INFO - Generating SHAP visualizations
+2025-04-09 20:07:39,938 - shap - INFO - num_full_subsets = 4
+2025-04-09 20:07:40,131 - shap - INFO - np.sum(w_aug) = 9.0
+2025-04-09 20:07:40,132 - shap - INFO - np.sum(self.kernelWeights) = 1.0
+2025-04-09 20:07:40,179 - shap - INFO - phi = array([-2.36703182e-01,  3.80569313e-03, -1.28654176e-02, -5.47735411e-01,
+       -4.75546458e-02, -9.07555018e-03, -1.28277660e-04, -2.05926872e-03,
+       -4.58809004e-03])
+2025-04-09 20:07:40,180 - shap - INFO - np.sum(w_aug) = 9.0
+2025-04-09 20:07:40,180 - shap - INFO - np.sum(self.kernelWeights) = 1.0
+2025-04-09 20:07:40,187 - shap - INFO - phi = array([ 2.36703182e-01, -3.80569313e-03,  1.28654176e-02,  5.47735411e-01,
+        4.75546458e-02,  9.07555018e-03,  1.28277660e-04,  2.05926872e-03,
+        4.58809004e-03])
+2025-04-09 20:07:40,199 - __main__ - ERROR - Error creating SHAP plots: In v0.20, force plot now requires the base value as the first parameter! Try shap.plots.force(explainer.expected_value, shap_values) or for multi-output models try shap.plots.force(explainer.expected_value[0], shap_values[..., 0]).
+2025-04-09 20:07:40,233 - shap - INFO - num_full_subsets = 4
+2025-04-09 20:07:40,288 - shap - INFO - np.sum(w_aug) = 9.0
+2025-04-09 20:07:40,288 - shap - INFO - np.sum(self.kernelWeights) = 1.0
+2025-04-09 20:07:40,292 - shap - INFO - phi = array([-2.36703182e-01,  3.80569313e-03, -1.28654176e-02, -5.47735411e-01,
+       -4.75546458e-02, -9.07555018e-03, -1.28277660e-04, -2.05926872e-03,
+       -4.58809004e-03])
+2025-04-09 20:07:40,293 - shap - INFO - np.sum(w_aug) = 9.0
+2025-04-09 20:07:40,293 - shap - INFO - np.sum(self.kernelWeights) = 1.0
+2025-04-09 20:07:40,309 - shap - INFO - phi = array([ 2.36703182e-01, -3.80569313e-03,  1.28654176e-02,  5.47735411e-01,
+        4.75546458e-02,  9.07555018e-03,  1.28277660e-04,  2.05926872e-03,
+        4.58809004e-03])
+2025-04-09 20:07:40,310 - __main__ - ERROR - Error identifying risk factors: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2025-04-09 20:07:40,312 - werkzeug - INFO - 127.0.0.1 - - [09/Apr/2025 20:07:40] "POST /predict HTTP/1.1" 200 -
+2025-04-09 20:19:22,812 - __main__ - INFO - Processing prediction request
+2025-04-09 20:19:22,832 - __main__ - INFO - Processed input: {'age': 60.0, 'hypertension': 1, 'heart_disease': 1, 'avg_glucose_level': 111.6, 'bmi': 21.88, 'gender_Male': 0, 'ever_married_Yes': 1, 'work_type_Never_worked': 1, 'work_type_Private': 0, 'work_type_Self-employed': 0, 'work_type_children': 0, 'Residence_type_Urban': 1, 'smoking_status_formerly smoked': 0, 'smoking_status_never smoked': 1, 'smoking_status_smokes': 0}
+2025-04-09 20:19:22,856 - __main__ - INFO - Prediction: 1, Probability: 0.8569
+2025-04-09 20:19:22,857 - __main__ - INFO - Generating SHAP visualizations
+2025-04-09 20:19:22,889 - shap - INFO - num_full_subsets = 4
+2025-04-09 20:19:22,932 - shap - INFO - np.sum(w_aug) = 9.0
+2025-04-09 20:19:22,932 - shap - INFO - np.sum(self.kernelWeights) = 1.0
+2025-04-09 20:19:22,942 - shap - INFO - phi = array([-2.36703182e-01,  3.80569313e-03, -1.28654176e-02, -5.47735411e-01,
+       -4.75546458e-02, -9.07555018e-03, -1.28277660e-04, -2.05926872e-03,
+       -4.58809004e-03])
+2025-04-09 20:19:22,943 - shap - INFO - np.sum(w_aug) = 9.0
+2025-04-09 20:19:22,943 - shap - INFO - np.sum(self.kernelWeights) = 1.0
+2025-04-09 20:19:22,948 - shap - INFO - phi = array([ 2.36703182e-01, -3.80569313e-03,  1.28654176e-02,  5.47735411e-01,
+        4.75546458e-02,  9.07555018e-03,  1.28277660e-04,  2.05926872e-03,
+        4.58809004e-03])
+2025-04-09 20:19:22,976 - __main__ - ERROR - Error creating SHAP plots: In v0.20, force plot now requires the base value as the first parameter! Try shap.plots.force(explainer.expected_value, shap_values) or for multi-output models try shap.plots.force(explainer.expected_value[0], shap_values[..., 0]).
+2025-04-09 20:19:22,995 - shap - INFO - num_full_subsets = 4
+2025-04-09 20:19:23,074 - shap - INFO - np.sum(w_aug) = 9.0
+2025-04-09 20:19:23,075 - shap - INFO - np.sum(self.kernelWeights) = 1.0
+2025-04-09 20:19:23,080 - shap - INFO - phi = array([-2.36703182e-01,  3.80569313e-03, -1.28654176e-02, -5.47735411e-01,
+       -4.75546458e-02, -9.07555018e-03, -1.28277660e-04, -2.05926872e-03,
+       -4.58809004e-03])
+2025-04-09 20:19:23,081 - shap - INFO - np.sum(w_aug) = 9.0
+2025-04-09 20:19:23,081 - shap - INFO - np.sum(self.kernelWeights) = 1.0
+2025-04-09 20:19:23,092 - shap - INFO - phi = array([ 2.36703182e-01, -3.80569313e-03,  1.28654176e-02,  5.47735411e-01,
+        4.75546458e-02,  9.07555018e-03,  1.28277660e-04,  2.05926872e-03,
+        4.58809004e-03])
+2025-04-09 20:19:23,096 - __main__ - ERROR - Error identifying risk factors: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2025-04-09 20:19:23,146 - werkzeug - INFO - 127.0.0.1 - - [09/Apr/2025 20:19:23] "POST /predict HTTP/1.1" 200 -
